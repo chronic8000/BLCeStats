@@ -6,7 +6,7 @@
 
 BLCeStats - Trader1
 
-Multi Threaded Ticker Application
+Multi Threaded Bitcoin and Litecoin Ticker Application
 Uses .Net Graphs to show BTC/LTC Price
 Feeds from MTGox, BTCe, BTCChina, OKCoin
 Conversion to USD Currency from Yuan - Feed From OpenExchangeRates.org
