@@ -1,4 +1,4 @@
-#########################################
+﻿#########################################
 ### FOSS Free Open Source             ###
 ### Keep My Name in Credits Somewhere ###
 ### Steve Lawrence - Ozoid.co.uk 2013 ###
@@ -14,13 +14,4 @@ Clocks from New York, London, Beijing
 
 Run and watch data build up - use to help decision making when trading
 
-ASK / BIDS : $TotalAmount #AverageCoins -from BTCe with Percentage 
-
-TODO:
-SQLLite Data Store
-More Feeds
-Buy/Sell Walls
-Fixed Graph Time
-Missing data - fill in with last known value
-Different Timings for Individual feeds
-Label Graph & Key
+ASK / BIDS : $TotalAmount #AverageCoins -from BTCe with Percentage
