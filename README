@@ -1,17 +1,9 @@
-﻿#########################################
-### FOSS Free Open Source             ###
-### Keep My Name in Credits Somewhere ###
-### Steve Lawrence - Ozoid.co.uk 2013 ###
-#########################################
-
-BLCeStats - Trader1
-
+﻿--- BLCeStats - Trader1 ---
 Multi Threaded Bitcoin and Litecoin Ticker Application
-Uses .Net Graphs to show BTC/LTC Price
-Feeds from MTGox, BTCe, BTCChina, OKCoin
+Feeds from MTGox, BTC-e, BTCChina, OKCoin
+Buy Price, Volume, Spread, Change
+Uses .Net Charting to show BTC/LTC Price as line chart
 Conversion to USD Currency from Yuan - Feed From OpenExchangeRates.org
 Clocks from New York, London, Beijing
-
 Run and watch data build up - use to help decision making when trading
-
 ASK / BIDS : $TotalAmount #AverageCoins -from BTCe with Percentage
