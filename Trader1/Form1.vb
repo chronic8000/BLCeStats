@@ -11,8 +11,8 @@ Imports System.Windows.Forms.DataVisualization.Charting
 
 
 Public Class Form1
-    Public Shared MTGoxSecret As String = "Nsn1dtxojJLmv1VHmlDzSwZ/HCX0pmvjvgUW93y5HC+pQHGnAq2CqAeeuZHg0/HqIy1LMyfB221v0Y/j018O3g=="
-    Public Shared MTGoxAPI As String = "c6a58234-8f1e-4fcb-859f-39a94ffcf729"
+    Public Shared MTGoxSecret As String = ""
+    Public Shared MTGoxAPI As String = ""
     Public Shared USDGBPValue As Single
     Public Shared USDCNYValue As Single
     Public Shared USDEURValue As Single
@@ -106,6 +106,21 @@ Public Class Form1
         Chart2.ChartAreas(0).AxisY.ScaleBreakStyle.StartFromZero = StartFromZero.Auto
         ' Set the spacing gap between the lines of the scale break (as a percentage of the Y-axis).
         ' Chart1.ChartAreas(0).AxisY.ScaleBreakStyle.Spacing = 2
+
+        '// Set Chart Area position
+        Chart1.ChartAreas(0).Position.Auto = False
+        Chart1.ChartAreas(0).Position.X = 8
+        Chart1.ChartAreas(0).Position.Y = 0
+        Chart1.ChartAreas(0).Position.Width = 90
+        Chart1.ChartAreas(0).Position.Height = 90
+
+        '    // Set the plotting area position. Coordinates of a plotting 
+        '   // area are relative to a chart area position.
+        Chart1.ChartAreas(0).InnerPlotPosition.Auto = False
+        Chart1.ChartAreas(0).InnerPlotPosition.X = 0
+        Chart1.ChartAreas(0).InnerPlotPosition.Y = 0
+        Chart1.ChartAreas(0).InnerPlotPosition.Width = 100
+        Chart1.ChartAreas(0).InnerPlotPosition.Height = 100
 
     End Sub
 

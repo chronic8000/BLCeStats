@@ -33,17 +33,17 @@ Partial Class TickerCtl
         'lbName
         '
         Me.lbName.Font = New System.Drawing.Font("Consolas", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbName.Location = New System.Drawing.Point(62, 0)
-        Me.lbName.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.lbName.Location = New System.Drawing.Point(56, 0)
+        Me.lbName.Margin = New System.Windows.Forms.Padding(0)
         Me.lbName.Name = "lbName"
-        Me.lbName.Size = New System.Drawing.Size(48, 15)
+        Me.lbName.Size = New System.Drawing.Size(58, 15)
         Me.lbName.TabIndex = 0
         '
         'LBVolume
         '
         Me.LBVolume.Font = New System.Drawing.Font("Consolas", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LBVolume.Location = New System.Drawing.Point(191, 0)
-        Me.LBVolume.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.LBVolume.Margin = New System.Windows.Forms.Padding(0)
         Me.LBVolume.Name = "LBVolume"
         Me.LBVolume.Size = New System.Drawing.Size(73, 15)
         Me.LBVolume.TabIndex = 1
@@ -52,7 +52,7 @@ Partial Class TickerCtl
         '
         Me.lblBuy.Font = New System.Drawing.Font("Consolas", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblBuy.Location = New System.Drawing.Point(114, 0)
-        Me.lblBuy.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.lblBuy.Margin = New System.Windows.Forms.Padding(0)
         Me.lblBuy.Name = "lblBuy"
         Me.lblBuy.Size = New System.Drawing.Size(73, 15)
         Me.lblBuy.TabIndex = 1
@@ -61,7 +61,7 @@ Partial Class TickerCtl
         '
         Me.LBSpread.Font = New System.Drawing.Font("Consolas", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LBSpread.Location = New System.Drawing.Point(268, 0)
-        Me.LBSpread.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.LBSpread.Margin = New System.Windows.Forms.Padding(0)
         Me.LBSpread.Name = "LBSpread"
         Me.LBSpread.Size = New System.Drawing.Size(56, 15)
         Me.LBSpread.TabIndex = 1
@@ -70,7 +70,7 @@ Partial Class TickerCtl
         '
         Me.LBChange.Font = New System.Drawing.Font("Consolas", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LBChange.Location = New System.Drawing.Point(327, 0)
-        Me.LBChange.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.LBChange.Margin = New System.Windows.Forms.Padding(0)
         Me.LBChange.Name = "LBChange"
         Me.LBChange.Size = New System.Drawing.Size(49, 15)
         Me.LBChange.TabIndex = 1
@@ -78,8 +78,8 @@ Partial Class TickerCtl
         'LBProvider
         '
         Me.LBProvider.Font = New System.Drawing.Font("Consolas", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LBProvider.Location = New System.Drawing.Point(2, 0)
-        Me.LBProvider.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.LBProvider.Location = New System.Drawing.Point(0, 0)
+        Me.LBProvider.Margin = New System.Windows.Forms.Padding(0)
         Me.LBProvider.Name = "LBProvider"
         Me.LBProvider.Size = New System.Drawing.Size(56, 15)
         Me.LBProvider.TabIndex = 1
