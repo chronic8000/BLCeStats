@@ -37,7 +37,7 @@ Public Class TickerCtl
             Dim d As New SetTextCallback(AddressOf SetText)
             Me.Invoke(d, New Object() {etick})
         Else
-            lbName.Text = etick.BaseCurr & "/" & etick.ToCurr
+            '  lbName.Text = etick.BaseCurr & "/" & etick.ToCurr
             lblBuy.Text = etick.buy
             LBSpread.Text = FormatNumber(etick.Spread, 5)
             LBVolume.Text = FormatNumber(etick.vol, 0)

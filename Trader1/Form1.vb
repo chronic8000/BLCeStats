@@ -16,81 +16,26 @@ Public Class Form1
     Public Shared USDGBPValue As Single
     Public Shared USDCNYValue As Single
     Public Shared USDEURValue As Single
-    Public Shared LastAsks As Single
-    Public Shared LastBids As Single
+    Public Shared LastAsksL As Single
+    Public Shared LastBidsL As Single
+    Public Shared LastAsksB As Single
+    Public Shared LastBidsB As Single
+    Public Shared Tickers As New List(Of TickMaster)
+
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         UpdateRates()
 
-        Dim cS1 As New DataVisualization.Charting.Series("S1")
-        cS1.Color = Color.Black
-        cS1.IsVisibleInLegend = False
-        cS1.IsXValueIndexed = False
-        cS1.ChartType = DataVisualization.Charting.SeriesChartType.FastLine
-        Chart1.Series.Add(cS1)
-
-        Dim cS2 As New DataVisualization.Charting.Series("S2")
-        cS2.Color = Color.Red
-        cS2.IsVisibleInLegend = False
-        cS2.IsXValueIndexed = False
-        cS2.ChartType = DataVisualization.Charting.SeriesChartType.FastLine
-        Chart1.Series.Add(cS2)
-
-        Dim cS3 As New DataVisualization.Charting.Series("S3")
-        cS3.Color = Color.Green
-        cS3.IsVisibleInLegend = False
-        cS3.IsXValueIndexed = False
-        cS3.ChartType = DataVisualization.Charting.SeriesChartType.FastLine
-        Chart2.Series.Add(cS3)
-
-        Dim cS4 As New DataVisualization.Charting.Series("S4")
-        cS4.Color = Color.Blue
-        cS4.IsVisibleInLegend = False
-        cS4.IsXValueIndexed = False
-        cS4.ChartType = DataVisualization.Charting.SeriesChartType.FastLine
-        Chart2.Series.Add(cS4)
-
-        Dim cS5 As New DataVisualization.Charting.Series("S5")
-        cS5.Color = Color.Brown
-        cS5.IsVisibleInLegend = False
-        cS5.IsXValueIndexed = False
-        cS5.ChartType = DataVisualization.Charting.SeriesChartType.FastLine
-        Chart1.Series.Add(cS5)
-
-        Dim cS6 As New DataVisualization.Charting.Series("S6")
-        cS6.Color = Color.Orange
-        cS6.IsVisibleInLegend = False
-        cS6.IsXValueIndexed = False
-        cS6.ChartType = DataVisualization.Charting.SeriesChartType.FastLine
-        Chart1.Series.Add(cS6)
-
-        Dim cS7 As New DataVisualization.Charting.Series("S7")
-        cS7.Color = Color.Purple
-        cS7.IsVisibleInLegend = False
-        cS7.IsXValueIndexed = False
-        cS7.ChartType = DataVisualization.Charting.SeriesChartType.FastLine
-        Chart1.Series.Add(cS7)
-
-        Dim cS8 As New DataVisualization.Charting.Series("S8")
-        cS8.Color = Color.Purple
-        cS8.IsVisibleInLegend = False
-        cS8.IsXValueIndexed = False
-        cS8.ChartType = DataVisualization.Charting.SeriesChartType.FastLine
-        Chart2.Series.Add(cS8)
-
-        Dim cS9 As New DataVisualization.Charting.Series("S9")
-        cS9.Color = Color.Purple
-        cS9.IsVisibleInLegend = False
-        cS9.IsXValueIndexed = False
-        cS9.ChartType = DataVisualization.Charting.SeriesChartType.FastLine
-        Chart2.Series.Add(cS9)
-
-        Dim cS10 As New DataVisualization.Charting.Series("S10")
-        cS10.Color = Color.Purple
-        cS10.IsVisibleInLegend = False
-        cS10.IsXValueIndexed = False
-        cS10.ChartType = DataVisualization.Charting.SeriesChartType.FastLine
-        Chart2.Series.Add(cS10)
+        NewChartArea("S1", Color.Black, 0)
+        NewChartArea("S2", Color.Red, 0)
+        NewChartArea("S3", Color.Green, 1)
+        NewChartArea("S4", Color.Blue, 1)
+        NewChartArea("S5", Color.Brown, 0)
+        NewChartArea("S6", Color.Orange, 0)
+        NewChartArea("S7", Color.Purple, 0)
+        NewChartArea("S8", Color.Purple, 1)
+        NewChartArea("S9", Color.Black, 1)
+        NewChartArea("S10", Color.Red, 1)
 
         Chart1.ChartAreas(0).AxisY.IsStartedFromZero = False
         Chart2.ChartAreas(0).AxisY.IsStartedFromZero = False
@@ -109,28 +54,49 @@ Public Class Form1
 
         '// Set Chart Area position
         Chart1.ChartAreas(0).Position.Auto = False
-        Chart1.ChartAreas(0).Position.X = 8
+        Chart1.ChartAreas(0).Position.X = 0
         Chart1.ChartAreas(0).Position.Y = 0
-        Chart1.ChartAreas(0).Position.Width = 90
-        Chart1.ChartAreas(0).Position.Height = 90
+        Chart1.ChartAreas(0).Position.Width = 100
+        Chart1.ChartAreas(0).Position.Height = 100
+        Chart2.ChartAreas(0).Position.Auto = False
+        Chart2.ChartAreas(0).Position.X = 0
+        Chart2.ChartAreas(0).Position.Y = 0
+        Chart2.ChartAreas(0).Position.Width = 100
+        Chart2.ChartAreas(0).Position.Height = 100
 
         '    // Set the plotting area position. Coordinates of a plotting 
         '   // area are relative to a chart area position.
-        Chart1.ChartAreas(0).InnerPlotPosition.Auto = False
-        Chart1.ChartAreas(0).InnerPlotPosition.X = 0
-        Chart1.ChartAreas(0).InnerPlotPosition.Y = 0
-        Chart1.ChartAreas(0).InnerPlotPosition.Width = 100
-        Chart1.ChartAreas(0).InnerPlotPosition.Height = 100
+        Chart1.ChartAreas(0).InnerPlotPosition.Auto = True
+        Chart2.ChartAreas(0).InnerPlotPosition.Auto = True
+        '        Chart1.ChartAreas(0).InnerPlotPosition.X = 0
+        '        Chart1.ChartAreas(0).InnerPlotPosition.Y = 0
+        '        Chart1.ChartAreas(0).InnerPlotPosition.Width = 100
+        '        Chart1.ChartAreas(0).InnerPlotPosition.Height = 100
 
     End Sub
 
+    Private Sub NewChartArea(name As String, colour As Color, chartnumber As Integer)
+        Dim cS1 As New DataVisualization.Charting.Series(name)
+        cS1.Color = colour
+        cS1.IsVisibleInLegend = False
+        cS1.IsXValueIndexed = False
+        cS1.ChartType = DataVisualization.Charting.SeriesChartType.FastLine
+        Select Case chartnumber
+            Case 0
+                Chart1.Series.Add(cS1)
+            Case 1
+                Chart2.Series.Add(cS1)
+        End Select
+    End Sub
+
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
-        CheckDepthGo("http://btc-e.com/api/2/ltc_usd/depth", "BTC-e")
+        CheckDepthGo("https://btc-e.com/api/2/ltc_usd/depth", "BTC-l")
+        CheckDepthGo("https://btc-e.com/api/2/btc_usd/depth", "BTC-b")
         ' Exit Sub
         CheckTickGo("http://data.btcchina.com/data/ticker", "china")
-        CheckTickGo("http://btc-e.com/api/2/ltc_usd/ticker", "ltcu")
-        CheckTickGo("http://btc-e.com/api/2/btc_usd/ticker", "btcu")
-        'CheckTickGo("http://btc-e.com/api/2/ltc_btc/ticker", "btcl")
+        CheckTickGo("https://btc-e.com/api/2/ltc_usd/ticker", "ltcu")
+        CheckTickGo("https://btc-e.com/api/2/btc_usd/ticker", "btcu")
+        'CheckTickGo("https://btc-e.com/api/2/ltc_btc/ticker", "btcl")
         CheckTickGo("http://www.okcoin.com/api/ticker.do?symbol=ltc_cny", "ok")
         CheckTickGo("http://www.okcoin.com/api/ticker.do?symbol=btc_cny", "okb")
         ' CheckTickGo("http://api.796.com/apiV2/ticker.html?op=futures", "796")
@@ -148,8 +114,13 @@ Public Class Form1
 
         'https://emebtc.com/api/1/ticker/ltc_usd
 
-        'http://www.bitstamp.net/api/ticker/
+        'http://www.bitstamp.net/api/ticker/        ***
         'https://btc100.org/api/ticker.php
+
+        'https://vircurex.com/api/get_info_for_1_currency.json?base=LTC&alt=USD
+        'https://data.fxbtc.com/api?op=query_ticker&symbol=ltc_cny
+        'https://api.kraken.com/0/public/Ticker?pair=XLTCZUSD
+        ' http://api.chbtc.com/data/ticker
 
     End Sub
 
@@ -334,6 +305,7 @@ Public Class Form1
         Dim eti As BTCDepth
         Try
             eti = GetDepth(url, Feed)
+            eti.Feed = Feed
         Catch ex As Exception
             Debug.Print(Feed & " Error: " & ex.ToString)
         End Try
@@ -341,7 +313,11 @@ Public Class Form1
     End Function
     Public Sub DepthComplete(action As Tasks.Task(Of BTCDepth))
         Dim eti = action.Result
-        If IsNothing(eti) Then Exit Sub
+        If IsNothing(eti) Then
+            Debug.Print("Empty Depth")
+            Exit Sub
+        End If
+
         Dim asks As Single = 0
         Dim askAmt As Single = 0
 
@@ -362,7 +338,12 @@ Public Class Form1
         Dim bidsAve As Single = bidAmt / eti.bids.Count
         Dim btotAve As Single = bids / eti.bids.Count
 
-        SetDepth({asks, bids}, {asksAve, bidsAve, atotAve, btotAve})
+        Select Case eti.Feed
+            Case "BTC-b"
+                SetBTCDepth({asks, bids}, {asksAve, bidsAve, atotAve, btotAve})
+            Case "BTC-l"
+                SetLTCDepth({asks, bids}, {asksAve, bidsAve, atotAve, btotAve})
+        End Select
     End Sub
 
     Public Function GetDepth(url As String, Feed As String) As BTCDepth
@@ -379,24 +360,24 @@ Public Class Form1
     Delegate Sub SetChartCallback(bVal As Single, ChartNum As String)
     Delegate Sub SetDepthCallback(ABs() As Single, Aves() As Single)
 
-    Public Sub SetDepth(ABS() As Single, AveS() As Single)
-        If Chart1.InvokeRequired Then
-            Dim d As New SetDepthCallback(AddressOf SetDepth)
+    Public Sub SetLTCDepth(ABS() As Single, AveS() As Single)
+        If lbAsks.InvokeRequired Then
+            Dim d As New SetDepthCallback(AddressOf SetLTCDepth)
             Me.Invoke(d, New Object() {ABS, AveS})
         Else
 
-            If ABS(0) = LastAsks Then lbAsks.BackColor = Color.Transparent
-            If ABS(0) > LastAsks Then lbAsks.BackColor = Color.LightGreen
-            If ABS(0) < LastAsks Then lbAsks.BackColor = Color.Red
+            If ABS(0) = LastAsksL Then lbAsks.BackColor = Color.Transparent
+            If ABS(0) > LastAsksL Then lbAsks.BackColor = Color.LightGreen
+            If ABS(0) < LastAsksL Then lbAsks.BackColor = Color.Red
             lbAsks.Text = "$" & FormatNumber(ABS(0), 2)
-            LastAsks = ABS(0)
+            LastAsksL = ABS(0)
             lbAskAve.Text = "#" & FormatNumber(AveS(0), 2) & "   $" & FormatNumber(AveS(2), 2)
 
-            If ABS(1) = LastBids Then lbBids.BackColor = Color.Transparent
-            If ABS(1) > LastBids Then lbBids.BackColor = Color.LightGreen
-            If ABS(1) < LastBids Then lbBids.BackColor = Color.Red
+            If ABS(1) = LastBidsL Then lbBids.BackColor = Color.Transparent
+            If ABS(1) > LastBidsL Then lbBids.BackColor = Color.LightGreen
+            If ABS(1) < LastBidsL Then lbBids.BackColor = Color.Red
             lbBids.Text = "$" & FormatNumber(ABS(1), 2)
-            LastBids = ABS(1)
+            LastBidsL = ABS(1)
             lbBidsAve.Text = "#" & FormatNumber(AveS(1), 2) & "   $" & FormatNumber(AveS(3), 2)
             Dim rtot = (ABS(0) + ABS(1)) / 100
 
@@ -404,6 +385,33 @@ Public Class Form1
             Dim r2 = (ABS(1) / rtot)
 
             lbRatio.Text = FormatNumber(r1, 2) & " : " & FormatNumber(r2, 2)
+        End If
+    End Sub
+    Public Sub SetBTCDepth(ABS() As Single, AveS() As Single)
+        If lbAsksB.InvokeRequired Then
+            Dim d As New SetDepthCallback(AddressOf SetBTCDepth)
+            Me.Invoke(d, New Object() {ABS, AveS})
+        Else
+
+            If ABS(0) = LastAsksB Then lbAsksB.BackColor = Color.Transparent
+            If ABS(0) > LastAsksB Then lbAsksB.BackColor = Color.LightGreen
+            If ABS(0) < LastAsksB Then lbAsksB.BackColor = Color.Red
+            lbAsksB.Text = "$" & FormatNumber(ABS(0), 2)
+            LastAsksB = ABS(0)
+            lbAskAveB.Text = "#" & FormatNumber(AveS(0), 2) & "   $" & FormatNumber(AveS(2), 2)
+
+            If ABS(1) = LastBidsB Then lbBidsB.BackColor = Color.Transparent
+            If ABS(1) > LastBidsB Then lbBidsB.BackColor = Color.LightGreen
+            If ABS(1) < LastBidsB Then lbBidsB.BackColor = Color.Red
+            lbBidsB.Text = "$" & FormatNumber(ABS(1), 2)
+            LastBidsB = ABS(1)
+            LBBidsAveB.Text = "#" & FormatNumber(AveS(1), 2) & "   $" & FormatNumber(AveS(3), 2)
+            Dim rtot = (ABS(0) + ABS(1)) / 100
+
+            Dim r1 = (ABS(0) / rtot)
+            Dim r2 = (ABS(1) / rtot)
+
+            lbRatioB.Text = FormatNumber(r1, 2) & " : " & FormatNumber(r2, 2)
         End If
     End Sub
 
@@ -475,9 +483,12 @@ Public Class Form1
         Label25.Text = USDGBPValue
         Label24.Text = USDCNYValue
         Label23.Text = USDEURValue
-        Label13.Text = FormatDateTime(Date.Now, DateFormat.ShortTime)
-        Label12.Text = FormatDateTime(Date.Now.AddHours(8), DateFormat.ShortTime)
-        Label11.Text = FormatDateTime(Date.Now.AddHours(-5), DateFormat.ShortTime)
+
+        Label13.Text = FormatDateTime(Date.Now, DateFormat.ShortTime)               ' UK
+        Label12.Text = FormatDateTime(Date.Now.AddHours(8), DateFormat.ShortTime)   ' China
+        Label11.Text = FormatDateTime(Date.Now.AddHours(-5), DateFormat.ShortTime)  ' NY
+        Label26.Text = FormatDateTime(Date.Now.AddHours(-8), DateFormat.ShortTime)  ' LA
+        Label27.Text = FormatDateTime(Date.Now.AddHours(2), DateFormat.ShortTime)  ' Bulg
     End Sub
 
     Public Function GetTicker(url As String, Feed As String) As Eticker
@@ -587,6 +598,14 @@ Public Class Form1
     End Function
 
    
+End Class
+
+Public Class TickMaster
+    Property URL As String
+    Property Colour As Color
+    Property Name As String
+    ' Property CurrencyPair As String
+    Property DataType As String
 End Class
 
 <DataContract(Name:="ticker")> _
@@ -733,6 +752,7 @@ Public Class BTCDepth
     Public asks As List(Of List(Of Single))
     <DataMember(Name:="bids", EmitDefaultValue:=False)> _
     Public bids As List(Of List(Of Single))
+    Public Feed As String
 End Class
 
 <DataContract()> _
